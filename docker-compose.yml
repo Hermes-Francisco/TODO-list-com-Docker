@@ -1,15 +1,17 @@
 services:
   web:
+    image: node:alpine
+    working_dir: /usr/web
     ports:
       - "8080:8080"
     volumes:
-      - ./web:/usr/app
-    build: ./web
+      - ./web:/usr/web
     command: ['npm', 'test']
   api:
+    image: node:alpine
+    working_dir: /usr/api
     ports:
       - "3000:3000"
     volumes:
       - ./api:/usr/api
-    build: ./api
     command: ['npm', 'test']
