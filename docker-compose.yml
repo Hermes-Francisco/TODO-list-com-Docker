@@ -1,15 +1,15 @@
 services:
   web:
-    build: ./web
     ports:
       - "8080:8080"
     volumes:
       - ./web:/usr/app
+    build: ./web
     command: ['npm', 'test']
   api:
-    build: ./api
     ports:
       - "3000:3000"
     volumes:
       - ./api:/usr/api
+    build: ./api
     command: ['npm', 'test']
