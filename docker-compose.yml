@@ -1,22 +1,24 @@
 services:
   web:
-    build: ./web
+    image: node:alpine
+    command: npm test
+    working_dir: /usr/web
     ports:
       - "8080:8080"
     volumes:
       - ./web:/usr/web
-    command: ['npm', 'test']
     links:
       - api
     depends_on:
       - api
   api:
-    build: ./api
+    image: node:alpine
+    command: npm test
+    working_dir: /usr/api
     ports:
       - "3000:3000"
     volumes:
       - ./api:/usr/api
-    command: ['npm', 'test']
     links:
       - mongodb
     depends_on:
