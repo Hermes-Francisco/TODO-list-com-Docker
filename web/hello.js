@@ -9,4 +9,4 @@ routes.get('/', (req, res)=> {
 app = express();
 
 app.use(routes);
-app.listen(8080);
+app.listen(8080)
