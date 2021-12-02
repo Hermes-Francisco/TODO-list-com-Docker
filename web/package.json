@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node hello.js"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
