@@ -48,9 +48,5 @@ jobs:
       run: npm ci
       working-directory: ./api
     - name: Run linters
-      uses: samuelmeuli/lint-action@v1
+      run: npm run lint
       working-directory: ./api
-      with:
-        github_token: ${{ secrets.github_token }}
-        eslint: true
-        prettier: false
