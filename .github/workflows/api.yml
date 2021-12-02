@@ -6,12 +6,18 @@ on:
       - '.github/**'
       - 'api/**'
       - '!web/**'
+  pull_request:
+    paths:
+      - '.github/**'
+      - 'api/**'
+      - '!web/**'
 jobs:
-  test:
+  api-test:
+    name: Api test
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [14.x]
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
