@@ -8,7 +8,7 @@ on:
       - '!api/**'
   pull_request:
     paths:
-      - '.github/**'
+      - '.github/workflows/web.yml'
       - 'web/**'
       - '!api/**'
 jobs:
