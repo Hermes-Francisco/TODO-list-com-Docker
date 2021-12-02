@@ -1,0 +1,54 @@
+name: Node CI Api
+
+on: 
+  push:
+    paths:
+      - '.github/workflows/api.yml'
+      - 'api/**'
+      - '!web/**'
+  pull_request:
+    paths:
+      - '.github/**'
+      - 'api/**'
+      - '!web/**'
+jobs:
+  api-test:
+    name: Api test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: api/package-lock.json
+    - name: Install dependencies
+      run: npm ci
+      working-directory: ./api
+    - name: Running tests
+      run: npm test
+      working-directory: ./api
+  api-lint:
+    name: Api Lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: api/package-lock.json
+    - name: Install dependencies
+      run: npm ci
+      working-directory: ./api
+    - name: Run linters
+      run: npm run lint
+      working-directory: ./api
