@@ -13,7 +13,7 @@ services:
       - api
   api:
     image: node:alpine
-    command: npm test
+    command: npm run dev
     working_dir: /usr/api
     ports:
       - "3000:3000"
