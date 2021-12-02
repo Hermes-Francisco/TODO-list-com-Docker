@@ -3,6 +3,7 @@ name: Node CI Api
 on: 
   push:
     paths:
+      - '.github/**'
       - 'api/**'
       - '!web/**'
 jobs:
