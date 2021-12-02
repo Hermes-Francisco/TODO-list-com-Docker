@@ -3,7 +3,7 @@ name: Node CI Web
 on: 
   push:
     paths:
-      - '.github/**'
+      - '.github/workflows/web.yml'
       - 'web/**'
       - '!api/**'
   pull_request:
