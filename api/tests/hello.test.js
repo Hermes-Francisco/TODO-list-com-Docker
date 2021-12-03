@@ -1,3 +1,3 @@
 test('Firts test', () => {
-  expect(5).toEqual(5);
+  expect(7).toEqual(7);
 });
