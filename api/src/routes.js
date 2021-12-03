@@ -5,6 +5,6 @@ const TaskController = require('./controllers/TaskController');
 const routes = new Router();
 
 routes.get('/', HelloController.hello);
-routes.post('/', TaskController.create);
+routes.post('/task', TaskController.create);
 
 module.exports = routes;
