@@ -38,7 +38,7 @@ class TaskController {
       const task = await Task.findByIdAndRemove(id);
 
       if (task == null) {
-        logger.error(`Task with id: ${id} doesn't exists`);
+        logger.error(`Task with id: ${id} doesn't exist`);
         return res.status(404).json({ message: 'Task not found', timestamp: new Date().getTime() });
       }
 
