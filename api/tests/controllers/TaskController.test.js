@@ -45,7 +45,7 @@ describe('Test TaskController', () => {
     const res = responseMock();
     req.params.id = 'id_123';
 
-    taskController.delete(req, res);
+    await taskController.delete(req, res);
 
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.status).toHaveBeenCalledTimes(1);
