@@ -14,6 +14,13 @@ class TaskController {
     return res.status(200).json(resposta);
   }
 
+  async show(req, res) {
+    const { task } = req.params;
+    const resposta = await Task.findOne({ _id: task });
+
+    return res.status(200).json(resposta);
+  }
+
   async update(req, res) {
     const { title, body } = req.body;
     const { task } = req.params;
