@@ -14,18 +14,24 @@ class TaskController {
 
     return res.status(200).json(resposta);
   }
-  
+
   async delete(req, res) {
-    const { id } = req.body;
+    const { id } = req.params;
     logger.info(`Deleting Task with id: ${id}`);
 
     try {
-      await Task.findByIdAndRemove(id);
+      const task = await Task.findByIdAndRemove(id);
+
+      if (task == null) {
+        logger.error(`Task with id: ${id} doesn't exists`);
+        return res.status(404).json({ message: 'Task not found', timestamp: new Date().getTime() });
+      }
+
       logger.info('Task deleted!');
-      res.status(200).json({ message: 'Task deleted!', timestamp: new Date().getTime() });
+      return res.status(200).json({ message: 'Task deleted!', timestamp: new Date().getTime() });
     } catch (e) {
       logger.error(`Error while deleting task: ${id} -> [${e.message}]`);
-      res.status(500).json({ message: 'An erro ocurred while deleting Task', timestamp: new Date().getTime() });
+      return res.status(500).json({ message: 'An erro ocurred while deleting Task', timestamp: new Date().getTime() });
     }
   }
 }

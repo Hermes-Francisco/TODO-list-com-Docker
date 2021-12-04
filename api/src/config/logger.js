@@ -2,12 +2,9 @@ const winston = require('winston');
 
 const logger = winston.createLogger({
   format: winston.format.combine(
-    winston.format.colorize(),
-    winston.format.timestamp({
-      format: 'DD/MM/YYYY HH:mm:ss',
-    }),
     winston.format((info) => {
-      info.message = `${info.level.toUpperCase()} [${info.timestamp}]: ${info.message}`;
+      info.level = info.level.toLocaleUpperCase();
+      info.message = `[${new Date().toISOString()}] -->   ${info.message}`;
       return info;
     })(),
     winston.format.simple(),

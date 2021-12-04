@@ -8,4 +8,5 @@ module.exports = {
   collectCoverage: true,
   coverageDirectory: './tests/coverage',
   coverageProvider: 'v8',
+  setupFiles: ['dotenv/config'],
 };

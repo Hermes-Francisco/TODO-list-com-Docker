@@ -7,6 +7,6 @@ const routes = new Router();
 routes.get('/', HelloController.hello);
 routes.get('/task', TaskController.index);
 routes.post('/task', TaskController.create);
-routes.delete('/task', TaskController.delete);
+routes.delete('/task/:id', TaskController.delete);
 
 module.exports = routes;
