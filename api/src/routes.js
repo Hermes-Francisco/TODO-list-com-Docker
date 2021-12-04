@@ -7,5 +7,6 @@ const routes = new Router();
 routes.get('/', HelloController.hello);
 routes.get('/task', TaskController.index);
 routes.post('/task', TaskController.create);
+routes.put('/task/:task', TaskController.update);
 
 module.exports = routes;
