@@ -10,5 +10,8 @@ module.exports = {
   },
   rules: {
     'class-methods-use-this': 0,
+    'no-param-reassign': 0,
+    'jest/no-done-callback': 0,
+    'jest/no-conditional-expect': 0,
   },
 };
