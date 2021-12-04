@@ -16,16 +16,16 @@ class TaskController {
   }
 
   async show(req, res) {
-    const { task } = req.params;
-    const resposta = await Task.findOne({ _id: task });
+    const { id } = req.params;
+    const resposta = await Task.findOne({ _id: id });
 
     return res.status(200).json(resposta);
   }
 
   async update(req, res) {
     const { title, body } = req.body;
-    const { task } = req.params;
-    const response = await Task.updateOne({ _id: task }, { title, body });
+    const { id } = req.params;
+    const response = await Task.updateOne({ _id: id }, { title, body });
 
     return res.status(200).json(response);
   }
