@@ -31,7 +31,7 @@ class TaskController {
       return res.status(200).json({ message: 'Task deleted!', timestamp: new Date().getTime() });
     } catch (e) {
       logger.error(`Error while deleting task: ${id} -> [${e.message}]`);
-      return res.status(500).json({ message: 'An erro ocurred while deleting Task', timestamp: new Date().getTime() });
+      return res.status(500).json({ message: 'An error ocurred while deleting Task', timestamp: new Date().getTime() });
     }
   }
 }
