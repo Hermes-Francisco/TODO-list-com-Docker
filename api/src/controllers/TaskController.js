@@ -34,7 +34,7 @@ class TaskController {
       return res.status(500).json({ message: 'An error ocurred while deleting Task', timestamp: new Date().getTime() });
     }
   }
-  
+
   async update(req, res) {
     const { title, body } = req.body;
     const { task } = req.params;
