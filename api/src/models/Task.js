@@ -1,4 +1,4 @@
-const mongoose = require('../../config/database');
+const mongoose = require('../config/database');
 
 const TaskSchema = new mongoose.Schema({
   title: String,
