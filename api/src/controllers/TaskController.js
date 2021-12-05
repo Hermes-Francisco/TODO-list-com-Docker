@@ -19,6 +19,11 @@ class TaskController {
     const { id } = req.params;
     const resposta = await Task.findOne({ _id: id });
 
+    if (resposta == null) {
+      logger.error(`Task with id: ${id} doesn't exist`);
+      return res.status(404).json({ message: 'Task not found', timestamp: new Date().getTime() });
+    }
+
     return res.status(200).json(resposta);
   }
 
