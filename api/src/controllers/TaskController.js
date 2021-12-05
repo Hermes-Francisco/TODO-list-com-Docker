@@ -30,9 +30,18 @@ class TaskController {
   async update(req, res) {
     const { title, body } = req.body;
     const { id } = req.params;
-    const response = await Task.updateOne({ _id: id }, { title, body });
+    try {
+      const response = await Task.updateOne({ _id: id }, { title, body });
+      if (response.matchedCount === 0) {
+        logger.error(`Task with id: ${id} doesn't exist`);
+        return res.status(404).json({ message: 'Task not found', timestamp: new Date().getTime() });
+      }
 
-    return res.status(200).json(response);
+      return res.status(200).json(response);
+    } catch (error) {
+      logger.error(`Error while updating task: ${id} -> [${error.message}]`);
+      return res.status(500).json({ message: 'An error ocurred while updating Task', timestamp: new Date().getTime() });
+    }
   }
 
   async delete(req, res) {
