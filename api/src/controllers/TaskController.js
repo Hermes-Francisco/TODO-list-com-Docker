@@ -15,6 +15,21 @@ class TaskController {
     return res.status(200).json(resposta);
   }
 
+  async show(req, res) {
+    const { id } = req.params;
+    const resposta = await Task.findOne({ _id: id });
+
+    return res.status(200).json(resposta);
+  }
+
+  async update(req, res) {
+    const { title, body } = req.body;
+    const { id } = req.params;
+    const response = await Task.updateOne({ _id: id }, { title, body });
+
+    return res.status(200).json(response);
+  }
+
   async delete(req, res) {
     const { id } = req.params;
     logger.info(`Deleting Task with id: ${id}`);
@@ -23,7 +38,7 @@ class TaskController {
       const task = await Task.findByIdAndRemove(id);
 
       if (task == null) {
-        logger.error(`Task with id: ${id} doesn't exists`);
+        logger.error(`Task with id: ${id} doesn't exist`);
         return res.status(404).json({ message: 'Task not found', timestamp: new Date().getTime() });
       }
 
@@ -33,14 +48,6 @@ class TaskController {
       logger.error(`Error while deleting task: ${id} -> [${e.message}]`);
       return res.status(500).json({ message: 'An error ocurred while deleting Task', timestamp: new Date().getTime() });
     }
-  }
-
-  async update(req, res) {
-    const { title, body } = req.body;
-    const { task } = req.params;
-    const response = await Task.updateOne({ _id: task }, { title, body });
-
-    return res.status(200).json(response);
   }
 }
 

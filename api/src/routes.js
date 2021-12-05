@@ -5,9 +5,10 @@ const TaskController = require('./controllers/TaskController');
 const routes = new Router();
 
 routes.get('/', HelloController.hello);
-routes.get('/task', TaskController.index);
 routes.post('/task', TaskController.create);
+routes.get('/task', TaskController.index);
+routes.get('/task/:id', TaskController.show);
+routes.put('/task/:id', TaskController.update);
 routes.delete('/task/:id', TaskController.delete);
-routes.put('/task/:task', TaskController.update);
 
 module.exports = routes;
