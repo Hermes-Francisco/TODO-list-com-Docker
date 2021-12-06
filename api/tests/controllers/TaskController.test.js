@@ -98,4 +98,76 @@ describe('Test TaskController', () => {
     expect(res.status).toHaveBeenCalledTimes(1);
     expect(res.json).toHaveBeenCalledTimes(1);
   });
+
+  it('[Index] Should return the task list', async () => {
+    Task.find.mockImplementation(() => {
+      throw new Error('erro no teste');
+    });
+
+    const req = requestMock();
+    const res = responseMock();
+    req.params.id = '123';
+
+    await taskController.index(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.status).toHaveBeenCalledTimes(1);
+    expect(res.json).toHaveBeenCalledTimes(1);
+  });
+
+  it('[Index] Should return 500 if an exception occurs', async () => {
+    Task.find.mockImplementation(async () => Promise.resolve([
+      {
+        title: 'testing',
+        body: 'test',
+      },
+      {
+        title: 'testing II',
+        body: 'test 2',
+      },
+    ]));
+
+    const req = requestMock();
+    const res = responseMock();
+    req.params.id = '123';
+
+    await taskController.index(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.status).toHaveBeenCalledTimes(1);
+    expect(res.json).toHaveBeenCalledTimes(1);
+  });
+
+  it('[Create] Should return 201 if a task is created', async () => {
+    Task.create.mockImplementation(async () => Promise.resolve({
+      title: 'testing',
+      body: 'test',
+    }));
+
+    const req = requestMock();
+    const res = responseMock();
+    req.params.id = '123';
+
+    await taskController.create(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(201);
+    expect(res.status).toHaveBeenCalledTimes(1);
+    expect(res.json).toHaveBeenCalledTimes(1);
+  });
+
+  it('[Create] Should return 500 if an exception is thrown', async () => {
+    Task.create.mockImplementation(() => {
+      throw new Error('test');
+    });
+
+    const req = requestMock();
+    const res = responseMock();
+    req.params.id = '123';
+
+    await taskController.create(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.status).toHaveBeenCalledTimes(1);
+    expect(res.json).toHaveBeenCalledTimes(1);
+  });
 });
