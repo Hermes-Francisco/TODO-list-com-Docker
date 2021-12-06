@@ -82,4 +82,20 @@ describe('Test TaskController', () => {
     expect(res.status).toHaveBeenCalledTimes(1);
     expect(res.json).toHaveBeenCalledTimes(1);
   });
+
+  it('[Show] Should return 500 if an Exception occurs', async () => {
+    Task.findOne.mockImplementation(() => {
+      throw new Error('error');
+    });
+
+    const req = requestMock();
+    const res = responseMock();
+    req.params.id = '123';
+
+    await taskController.show(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.status).toHaveBeenCalledTimes(1);
+    expect(res.json).toHaveBeenCalledTimes(1);
+  });
 });
