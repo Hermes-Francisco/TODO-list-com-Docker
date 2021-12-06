@@ -51,4 +51,35 @@ describe('Test TaskController', () => {
     expect(res.status).toHaveBeenCalledTimes(1);
     expect(res.json).toHaveBeenCalledTimes(1);
   });
+
+  it('[Show] Should successfully get a Task', async () => {
+    Task.findOne.mockImplementation(() => Promise.resolve({
+      title: 'Tarefa 1',
+      body: 'Teste de Tarefa 1',
+    }));
+
+    const req = requestMock();
+    const res = responseMock();
+    req.params.id = '123';
+
+    await taskController.show(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.status).toHaveBeenCalledTimes(1);
+    expect(res.json).toHaveBeenCalledTimes(1);
+  });
+
+  it('[Show] Should return 404 if a task was not found', async () => {
+    Task.findOne.mockImplementation(() => Promise.resolve(null));
+
+    const req = requestMock();
+    const res = responseMock();
+    req.params.id = '123';
+
+    await taskController.show(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.status).toHaveBeenCalledTimes(1);
+    expect(res.json).toHaveBeenCalledTimes(1);
+  });
 });
