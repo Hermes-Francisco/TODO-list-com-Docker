@@ -100,22 +100,6 @@ describe('Test TaskController', () => {
   });
 
   it('[Index] Should return the task list', async () => {
-    Task.find.mockImplementation(() => {
-      throw new Error('erro no teste');
-    });
-
-    const req = requestMock();
-    const res = responseMock();
-    req.params.id = '123';
-
-    await taskController.index(req, res);
-
-    expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.status).toHaveBeenCalledTimes(1);
-    expect(res.json).toHaveBeenCalledTimes(1);
-  });
-
-  it('[Index] Should return 500 if an exception occurs', async () => {
     Task.find.mockImplementation(async () => Promise.resolve([
       {
         title: 'testing',
@@ -134,6 +118,22 @@ describe('Test TaskController', () => {
     await taskController.index(req, res);
 
     expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.status).toHaveBeenCalledTimes(1);
+    expect(res.json).toHaveBeenCalledTimes(1);
+  });
+
+  it('[Index] Should return 500 if an exception occurs', async () => {
+    Task.find.mockImplementation(() => {
+      throw new Error('erro no teste');
+    });
+
+    const req = requestMock();
+    const res = responseMock();
+    req.params.id = '123';
+
+    await taskController.index(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
     expect(res.status).toHaveBeenCalledTimes(1);
     expect(res.json).toHaveBeenCalledTimes(1);
   });
