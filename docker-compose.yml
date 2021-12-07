@@ -1,7 +1,7 @@
 services:
   web:
     image: node:alpine
-    command: npm test
+    command: npm start
     working_dir: /usr/web
     ports:
       - "3000:3000"
