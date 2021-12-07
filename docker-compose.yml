@@ -4,7 +4,7 @@ services:
     command: npm test
     working_dir: /usr/web
     ports:
-      - "8080:8080"
+      - "3000:3000"
     volumes:
       - ./web:/usr/web
     links:
@@ -16,7 +16,7 @@ services:
     command: npm run dev
     working_dir: /usr/api
     ports:
-      - "3000:3000"
+      - "8080:8080"
     volumes:
       - ./api:/usr/api
     links:
