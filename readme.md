@@ -15,3 +15,11 @@ depois disso, é só rodar o `docker-compose up` que a aplicação irá funciona
 A API estará disponível no `localhost:8080` e a interface web no `localhost:3000`. 
 
 Além disso, para rodar os testes, use o comando `docker-compose run api npm test`
+
+# Autores
+- [Dharney Castro](https://www.linkedin.com/in/dharney-castro-1457291b3)
+- [Hermes Francisco](https://www.linkedin.com/in/hermes-francisco-b0936a211)
+- [Guilherme Henrique Chaves](https://www.linkedin.com/in/guihchaves)
+- Gabriel Vitor
+- Nathan Neves
+- Yuri Asthar
