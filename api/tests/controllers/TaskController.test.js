@@ -170,4 +170,64 @@ describe('Test TaskController', () => {
     expect(res.status).toHaveBeenCalledTimes(1);
     expect(res.json).toHaveBeenCalledTimes(1);
   });
+
+  it('[Update] Should return update successfully', async () => {
+    Task.updateOne.mockImplementation(async () => Promise.resolve(
+      {
+        acknowledged: true,
+        modifiedCount: 0,
+        upsertedId: null,
+        upsertedCount: 0,
+        matchedCount: 1,
+      },
+    ));
+
+    const req = requestMock();
+    const res = responseMock();
+    req.params.id = '123';
+
+    await taskController.update(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.status).toHaveBeenCalledTimes(1);
+    expect(res.json).toHaveBeenCalledTimes(1);
+  });
+
+  it('[Update] Should return 404', async () => {
+    Task.updateOne.mockImplementation(async () => Promise.resolve(
+      {
+        acknowledged: true,
+        modifiedCount: 0,
+        upsertedId: null,
+        upsertedCount: 0,
+        matchedCount: 0,
+      },
+    ));
+
+    const req = requestMock();
+    const res = responseMock();
+    req.params.id = '123';
+
+    await taskController.update(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.status).toHaveBeenCalledTimes(1);
+    expect(res.json).toHaveBeenCalledTimes(1);
+  });
+
+  it('[Update] Should return 500', async () => {
+    Task.updateOne.mockImplementation(() => {
+      throw new Error('erro');
+    });
+
+    const req = requestMock();
+    const res = responseMock();
+    req.params.id = '123';
+
+    await taskController.update(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.status).toHaveBeenCalledTimes(1);
+    expect(res.json).toHaveBeenCalledTimes(1);
+  });
 });
