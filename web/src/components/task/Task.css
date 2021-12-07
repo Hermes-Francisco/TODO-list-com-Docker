@@ -1,8 +1,29 @@
-.Task {
-    border: 1px solid #e3d1d4;
-    border-radius: 10px;
-    margin-top: 30px;
-    height: 33vh;
-    width: 25%;
-    background-color: #e0c8cc;
+.Task{
+    position: relative;
+    top:10px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    background-color: white;
+    max-width: 500px;
+    height: fit-content;
+}
+
+.TaskTitle{
+    margin-left: 2.5%;
+    margin-bottom: 0;
+}
+
+.TaskBody{
+    width: 90%;
+    margin-right: 2.5%;
+    margin-left: 2.5%;
+    top: 0;
+    display: inline-block;
+}
+
+.Delete{
+    background-color:rgb(184, 0, 0);
+    margin-right: 5%;
+    margin-left: 5%;
+    width: 90%;
 }

@@ -10,9 +10,9 @@ function Task(props) {
 
   return (
     <div className="Task">
-        <div className="Task-title">{props.title}</div>
-        <div className="Task-body">{props.body}</div>
-        <button onClick={remove}>Deletar</button>
+        <h1 className="TaskTitle">{props.title}</h1>
+        <p className="TaskBody">{props.body}</p>
+        <button className="Delete" onClick={remove}>Deletar</button>
     </div>
   );
 }

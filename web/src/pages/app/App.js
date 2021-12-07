@@ -33,12 +33,13 @@ function App() {
 
   return (
     <div className="App">
-
+      <div className="Task">
         <form onSubmit={onSubmit}>
           <input type="text" placeholder="Título"></input>
           <textarea type="text" placeholder="Conteúdo"></textarea>
-          <button type="submit">Criar tarefa</button>
+          <button className="CreateButton" type="submit">Criar tarefa</button>
         </form>
+      </div>
 
         {taskList()}
 
