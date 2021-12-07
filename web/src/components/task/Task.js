@@ -3,7 +3,6 @@ import "./Task.css";
 
 function Task(props) {
   async function remove() {
-    console.log(props)
     axios.delete(`http://localhost:8080/task/${props._id}`).then(
       window.location.reload()
     );
