@@ -3,27 +3,32 @@ import axios from 'axios';
 import Task from '../../components/task/Task';
 import './App.css';
 
+var called = false;
+
 function App() {
-  const arr = [];
-  const [tasks, setTasks] = useState(arr);
+  const [tasks, setTasks] = useState([]);
+
+  if(! called) {
+    axios.get('http://localhost:8080/task').then((response) => {
+      called = true;
+      setTasks(response.data);
+    });
+  }
 
   async function onSubmit (event) {
     event.preventDefault();
-    console.log("Enviando!!!");
-    console.log();
 
     const body = {
       title: event.target[0].value,
       body: event.target[1].value
     }
 
-
     const response = await axios.post('http://localhost:8080/task', body);
     setTasks([...tasks, response.data]);
   }
 
   function taskList() {
-    return tasks.map((task) => <Task key={task._id} title={task.title} body={task.body}/>);
+    return tasks.map((task) => <Task _id={task._id} key={task._id} title={task.title} body={task.body}/>);
   }
 
   return (
