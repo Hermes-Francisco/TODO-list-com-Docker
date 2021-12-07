@@ -28,7 +28,7 @@ function App() {
   }
 
   function taskList() {
-    return tasks.map((task) => <Task key={task._id} title={task.title} body={task.body}/>);
+    return tasks.map((task) => <Task _id={task._id} key={task._id} title={task.title} body={task.body}/>);
   }
 
   return (
