@@ -18,8 +18,8 @@ Além disso, para rodar os testes, use o comando `docker-compose run api npm tes
 
 # Autores
 - [Dharney Castro](https://www.linkedin.com/in/dharney-castro-1457291b3)
-- [Hermes Francisco](https://www.linkedin.com/in/hermes-francisco-b0936a211)
+- [Gabriel Vitor](https://www.linkedin.com/in/gabriel-drumond-viana)
 - [Guilherme Henrique Chaves](https://www.linkedin.com/in/guihchaves)
+- [Hermes Francisco](https://www.linkedin.com/in/hermes-francisco-b0936a211)
 - [Nathan Neves](https://www.linkedin.com/in/nathan-neves-553a711a2)
-- Gabriel Vitor
-- Yuri Asthar
+- [Yuri Asthar](https://www.linkedin.com/in/yuri-asthar)
